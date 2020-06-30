@@ -1,0 +1,8 @@
+description: >
+  Log into Humanitec registry
+executor: default
+steps:
+  - run:
+      name: "Log into Humanitec registry" 
+      command: |
+        docker login -u $HUMANITEC_REGISTRY_USERNAME -p $HUMANITEC_REGISTRY_PASSWORD $HUMANITEC_REGISTRY_URL

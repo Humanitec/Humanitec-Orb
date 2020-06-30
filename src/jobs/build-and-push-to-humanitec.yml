@@ -1,0 +1,18 @@
+description: >
+  Build image and push to Humanitec
+parameters:
+  humanitec_api:
+    description: "URL of the Humanitec API"
+    type: string
+    default: "api.humanitec.io"
+  organization:
+    description: "Name of the organization in Humanitec"
+    type: string
+    default: []
+executor: default
+steps:
+  - checkout
+  - get-registry-credentials:
+      humanitec_api: << parameters.humanitec_api >>
+      organization: << parameters.organization >>
+  - log-into-registry
