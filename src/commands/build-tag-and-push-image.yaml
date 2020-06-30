@@ -1,0 +1,24 @@
+description: >
+    Build and tag image for Humanitec
+parameters:
+    local_tag:
+        description: "Local tag of image"
+        type: string
+        default: []
+    remote_tag:
+        descroption: "Remote tag for image"
+        type: string
+        default: []
+ exectur: default
+ steps:
+    - checkout
+    - run:
+        name: "Log into Humanitec registry" 
+        command: |
+          docker login -u $HUMANITEC_REGISTRY_USERNAME -p $HUMANITEC_REGISTRY_PASSWORD $HUMANITEC_REGISTRY_URL    
+    - run:
+        name: "Build and tag the image"
+        command: |
+            echo docker build -t '<< parameters.local_tag >>' .
+            echo docker tag '<< parameters.local_tag >>' '<< parameters.remote_tag >>'
+            echo docker push '<< parameters.remote_tag >>'
