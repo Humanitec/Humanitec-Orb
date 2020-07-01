@@ -1,0 +1,124 @@
+commands:
+  build-tag-and-push-image:
+    description: |
+      Build and tag image for Humanitec
+    parameters:
+      local_tag:
+        default: ""
+        description: Local tag of image
+        type: string
+      remote_tag:
+        default: ""
+        description: Remote tag for image
+        type: string
+    steps:
+    - checkout
+    - run:
+        command: "docker login -u $HUMANITEC_REGISTRY_USERNAME -p $HUMANITEC_REGISTRY_PASSWORD
+          $HUMANITEC_REGISTRY_URL    \n"
+        name: Log into Humanitec registry
+    - run:
+        command: |-
+          echo docker build -t '<< parameters.local_tag >>' .
+          echo docker tag '<< parameters.local_tag >>' '<< parameters.remote_tag >>'
+          echo docker push '<< parameters.remote_tag >>'
+        name: Build and tag the image
+  get-registry-credentials:
+    description: |
+      Get credentials for Humanitec registry
+    parameters:
+      humanitec_api:
+        default: api.humanitec.io
+        description: URL of the Humanitec API
+        type: string
+      organization:
+        default: ""
+        description: Name of the organization in Humanitec
+        type: string
+    steps:
+    - run:
+        command: |
+          HUMANITEC_REGISTRY_CREDS=$(curl -XGET -H 'Authorization:Bearer '$HUMANITEC_TOKEN'' 'https://'<< parameters.humanitec_api >>'/orgs/'<< parameters.organization >>'/registries/humanitec/creds' | jq .)
+          HUMANITEC_REGISTRY_USERNAME=$(echo $HUMANITEC_REGISTRY_CREDS | jq .username | tr -d '"')
+          HUMANITEC_REGISTRY_PASSWORD=$(echo $HUMANITEC_REGISTRY_CREDS | jq .password | tr -d '"')
+          HUMANITEC_REGISTRY_URL=$(echo $HUMANITEC_REGISTRY_CREDS | jq .registry | tr -d '"')
+          echo "export HUMANITEC_REGISTRY_USERNAME=$HUMANITEC_REGISTRY_USERNAME" >> $BASH_ENV
+          echo "export HUMANITEC_REGISTRY_PASSWORD=$HUMANITEC_REGISTRY_PASSWORD" >> $BASH_ENV
+          echo "export HUMANITEC_REGISTRY_URL=$HUMANITEC_REGISTRY_URL" >> $BASH_ENV
+        name: Get Humanitec Registry Credentials
+  inform-humanitec:
+    description: |
+      Inform Humanitec about new available image
+    parameters:
+      humanitec_api:
+        default: api.humanitec.io
+        description: URL of the Humanitec API
+        type: string
+      organization:
+        default: ""
+        description: Name of the organization in Humanitec
+        type: string
+      remote_tag:
+        default: ""
+        description: Remote tag of image
+        type: string
+    steps:
+    - run:
+        command: "MODULE_BUILD_INFO=\"{\\\"commit\\\": \\\"'$CIRCLE_SHA1'\\\", \\\"branch\\\":
+          \\\"'$CIRCLE_BRANCH'\\\",\\\"image\\\" : \\\"'<< parameters.remote_tag >>'\\\"}
+          \n\"curl -XPOST -H 'Authorization: Bearer '$HUMANITEC_TOKEN'' -H 'Content-type:
+          application/json' -d '$MODULE_BUILD_INFO' 'https://'<< parameters.humanitec_api
+          >>'/orgs/'<< parameters.organization >>'/modules/'<< parameters.module_name
+          >>''\""
+        name: Inform Humanitec
+description: |
+  Sample orb description # What will your orb allow users to accomplish? # Descriptions should be short, simple, and informative.
+display:
+  home_url: https://www.website.com/docs
+  source_url: https://www.github.com/EXAMPLE_ORG/EXAMPLE_PROJECT
+executors:
+  default:
+    description: |
+      This is a sample executor using Docker and Node. # What is this executor? # Descriptions should be short, simple, and clear.
+    docker:
+    - image: circleci/node:<<parameters.tag>>
+    parameters:
+      tag:
+        default: latest
+        description: |
+          Pick a specific circleci/node image variant: https://hub.docker.com/r/circleci/node/tags
+        type: string
+jobs:
+  build-and-push-to-humanitec:
+    description: |
+      Build image and push to Humanitec
+    executor: default
+    parameters:
+      humanitec_api:
+        default: api.humanitec.io
+        description: URL of the Humanitec API
+        type: string
+      module_name:
+        default: $CIRCLE_PROJECT_REPONAME
+        description: Name of the module
+        type: string
+      organization:
+        default: ""
+        description: Name of the organization in Humanitec
+        type: string
+    steps:
+    - get-registry-credentials:
+        humanitec_api: << parameters.humanitec_api >>
+        organization: << parameters.organization >>
+    - build-tag-and-push-image:
+        local_tag: '''<< parameters.organization >>''/''<< parameters.module_name
+          >>'':''$CIRCLE_BUILD_NUM'''
+        remote_tag: '''$HUMANITEC_REGISTRY_URL''/''<< parameters.organization >>''/''<<
+          parameters.module_name >>'':''$CIRCLE_BUILD_NUM'''
+    - inform-humanitec:
+        humanitec_api: << parameters.humanitec_api >>
+        organization: << parameters.organization >>
+        remote_tag: '''$HUMANITEC_REGISTRY_URL''/''<< parameters.organization >>''/''<<
+          parameters.module_name >>'':''$CIRCLE_BUILD_NUM'''
+version: 2.1
+

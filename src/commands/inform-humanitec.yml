@@ -1,0 +1,21 @@
+description: >
+  Inform Humanitec about new available image
+parameters:
+  remote_tag:
+    description: "Remote tag of image"
+    type: string
+    default: ""
+  organization:
+    description: "Name of the organization in Humanitec"
+    type: string
+    default: ""
+  humanitec_api:
+    description: "URL of the Humanitec API"
+    type: string
+    default: "api.humanitec.io"
+steps:
+  - run:
+      name: "Inform Humanitec"
+      command: |
+        MODULE_BUILD_INFO="{\"commit\": \"'$CIRCLE_SHA1'\", \"branch\": \"'$CIRCLE_BRANCH'\",\"image\" : \"'<< parameters.remote_tag >>'\"} 
+        "curl -XPOST -H 'Authorization: Bearer '$HUMANITEC_TOKEN'' -H 'Content-type: application/json' -d '$MODULE_BUILD_INFO' 'https://'<< parameters.humanitec_api >>'/orgs/'<< parameters.organization >>'/modules/'<< parameters.module_name >>''"

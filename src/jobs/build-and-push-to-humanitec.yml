@@ -8,7 +8,7 @@ parameters:
   organization:
     description: "Name of the organization in Humanitec"
     type: string
-    default: []
+    default: ""
   humanitec_api:
     description: "URL of the Humanitec API"
     type: string
