@@ -1,0 +1,28 @@
+description: >
+  Notify Humanitec about a new available build
+parameters:
+  humanitec_token:
+    type: string
+    default: ""
+    description: "Token to access Humanitec"
+  organization:
+    type: string
+    default: ""
+    description: "Name of the organization in Humanitec"
+  module_name:
+    type: string
+    default: ""
+    description: "Name of the module in Humanitec"
+  image_name:
+    type: string
+    default: ""
+    description: "Name of the image"
+  humanitec_api:
+    type: string
+    default: "https://api.humanitec.io"
+    description: "URL of the API to be used"
+steps:
+  - run:
+      name: Notify Humanitec
+      command: |
+        "curl -XPOST -H 'Authorization: Bearer << parameters.humanitec_token >>' -H 'Content-type: application/json' -d '{\"commit\": \"'$CIRCLE_SHA1'\", \"branch\": \"'$CIRCLE_BRANCH'\", \"image\": \"<< parameters.image_name >>\"}' '<< parameters.humanitec_api >>/orgs/<< parameters.organization >>/modules/<< parameters.module_name >>/builds'"

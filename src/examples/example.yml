@@ -2,7 +2,6 @@ description: >
   Sample example description.
   # What will this example document?
   # Descriptions should be short, simple, and clear.
-  # Don't know
 usage:
   version: 2.1
   orbs:
