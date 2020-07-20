@@ -85,6 +85,7 @@ workflows:
           bot-token-variable: GH_BOT_USER_TOKEN
           fail-if-semver-not-indicated: true
           publish-version-tag: false
+          add-pr-comment: false
           requires:
             - integration-test-1
           filters:
