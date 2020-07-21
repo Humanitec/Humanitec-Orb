@@ -2,10 +2,6 @@ description: >
   Notify Humanitec about new build
 executor: default
 parameters:
-  humanitec_token:
-    type: string
-    default:
-    description: "Token to access Humanitec"
   organization:
     type: string
     default:
@@ -24,7 +20,6 @@ parameters:
     description: "URL of the API to be used"
 steps:
   - notify:
-      humanitec_token: << parameters.humanitec_token >>
       organization: << parameters.organization >>
       module_name: << parameters.module_name >>
       image_name: << parameters.image_name >>
