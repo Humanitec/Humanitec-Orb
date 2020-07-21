@@ -24,4 +24,3 @@ steps:
       module_name: << parameters.module_name >>
       image_name: << parameters.image_name >>
       humanitec_api: << parameters.humanitec_api >>
-      humanitec_token: HUMANITEC_TOKEN

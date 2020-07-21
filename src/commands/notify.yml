@@ -23,6 +23,10 @@ parameters:
     description: "URL of the API to be used"
 steps:
   - run:
+      name: Debugging
+      command: |
+        echo << parameters.humanitec_token >>
+  - run:
       name: Notify Humanitec
       command: |
         curl -XPOST \
