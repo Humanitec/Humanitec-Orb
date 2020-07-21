@@ -3,19 +3,19 @@ description: >
 parameters:
   humanitec_token:
     type: string
-    default: ""
+    default:
     description: "Token to access Humanitec"
   organization:
     type: string
-    default: ""
+    default:
     description: "Name of the organization in Humanitec"
   module_name:
     type: string
-    default: ""
+    default:
     description: "Name of the module in Humanitec"
   image_name:
     type: string
-    default: ""
+    default:
     description: "Name of the image"
   humanitec_api:
     type: string
