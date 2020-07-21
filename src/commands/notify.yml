@@ -3,7 +3,7 @@ description: >
 parameters:
   humanitec_token:
     type: string
-    default:
+    default: ${HUMANITEC_TOKEN}
     description: "Token to access Humanitec"
   organization:
     type: string
