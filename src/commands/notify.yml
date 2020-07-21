@@ -21,7 +21,7 @@ steps:
   - run:
       name: Test
       command: |
-        echo '$HUMANITEC_TOKEN'
+        echo '"$HUMANITEC_TOKEN"'
   - run:
       name: Notify Humanitec
       command: |
