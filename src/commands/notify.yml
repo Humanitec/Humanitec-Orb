@@ -15,7 +15,7 @@ parameters:
     description: "Name of the image"
   humanitec_token:
     type: string
-    default: $HUMANITEC_TOKEN
+    default: ${HUMANITEC_TOKEN}
     description: "Token to access Humanitec"
   humanitec_api:
     type: string
