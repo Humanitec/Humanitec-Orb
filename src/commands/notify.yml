@@ -25,7 +25,7 @@ steps:
   - run:
       name: Debugging
       command: |
-        echo ${<< parameters.humanitec_token} >>
+        echo ${<< parameters.humanitec_token >>}
   - run:
       name: Notify Humanitec
       command: |
