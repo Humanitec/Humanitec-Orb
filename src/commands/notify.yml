@@ -1,6 +1,10 @@
 description: >
   Notify Humanitec about a new available build
 parameters:
+  humanitec_token:
+    type: string
+    default:
+    description: "Token to access Humanitec"
   organization:
     type: string
     default:
@@ -22,7 +26,7 @@ steps:
       name: Notify Humanitec
       command: |
         curl -XPOST \
-          -H 'Authorization: Bearer ${HUMANITEC_TOKEN}' \
+          -H 'Authorization: Bearer << parameters.humanitec_token >>' \
           -H 'Content-type: application/json' \
           -d '{"commit": "commit_orb", "branch": "branch_orb", "image": "image_orb"}' \
           'https://staging-api.humanitec.io/orgs/humanitec-demo/modules/hugo-app/builds'
