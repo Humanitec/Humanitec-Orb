@@ -29,3 +29,6 @@ steps:
           -H 'Content-type: application/json' \
           -d '{"commit": "commit_orb", "branch": "branch_orb", "image": "image_orb"}' \
           'https://staging-api.humanitec.io/orgs/humanitec-demo/modules/hugo-app/builds'
+  - run:
+      name: Hello World
+      command: echo << parameters.greeting >> world
