@@ -20,7 +20,7 @@ parameters:
     description: "URL of the API to be used"
 steps:
   - notify:
-      humanitec_token: << parameters.humanitec_token >>
       organization: << parameters.organization >>
       module_name: << parameters.module_name >>
       image_name: << parameters.image_name >>
+      humanitec_api: << parameters.humanitec_api >>
