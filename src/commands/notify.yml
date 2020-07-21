@@ -26,7 +26,7 @@ steps:
       name: Notify Humanitec
       command: |
         curl -XPOST \
-          -H 'Authorization: Bearer << parameters.humanitec_token >>' \
+          -H 'Authorization: Bearer ${<< parameters.humanitec_token >>}' \
           -H 'Content-type: application/json' \
-          -d '{"commit": "commit_orb", "branch": "branch_orb", "image": "image_orb"}' \
-          'https://staging-api.humanitec.io/orgs/humanitec-demo/modules/hugo-app/builds'
+          -d '{"commit": "$CIRCLE_SHA1", "branch": "$CIRCLE_BRANCH", "image": "<< parameters.image_name >>"}' \
+          '<< parameters.humanitec_api >>/orgs/<< parameters.organization >>/modules/<< parameters.nodule_name >>/builds'
