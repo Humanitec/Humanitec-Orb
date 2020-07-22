@@ -38,5 +38,5 @@ steps:
         REMOTE_TAG=$REGISTRY_REGISTRY/$LOCAL_TAG
 
         docker login --username $REGISTRY_USERNAME --password $REGISTRY_PASSWORD $REGISTRY_REGISTRY
-        docker tag << parameters.organization >>/$LOCAL_TAG $REMOTE_TAG
+        docker tag $LOCAL_TAG $REMOTE_TAG
         docker push $REMOTE_TAG
