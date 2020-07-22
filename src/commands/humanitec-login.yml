@@ -17,6 +17,8 @@ steps:
   - run:
       name: Get credentials for the Humanitec registry
       command: |
-        fetch(`<< parameters.humanitec_api >>/orgs/<< parameters.organization >>/registries/humanitec/creds`, { \
-          headers: {'Authorization': `Bearer ${<< parameters.humanitec_token >>}`}, \
-          })
+        curl -X GET \
+          -s \
+          -H "Authorization: Bearer ${<< parameters.humanitec_token >>}" \
+          -H "accept: application/json" \
+          https://staging-api.humanitec.io/orgs/humanitec-demo/registries/humanitec/creds | jq .
