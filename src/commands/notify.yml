@@ -4,7 +4,7 @@ parameters:
   humanitec_token:
     type: env_var_name
     default: HUMANITEC_TOKEN
-    description: Token to access Humanitec.
+    description: Token to access Humanitec. Needs to be set in an environment variable in the project.
   organization:
     type: string
     default: ""
@@ -20,7 +20,7 @@ parameters:
   humanitec_api:
     type: string
     default: https://api.humanitec.io
-    description: URL of the API to be used.
+    description: URL of the API to be used. Defaults to https://api.humanitec.io.
 steps:
   - run:
       name: Debugging
