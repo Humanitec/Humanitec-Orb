@@ -23,8 +23,9 @@ steps:
           -H "accept: application/json" \
           << parameters.humanitec_api >>/orgs/<< parameters.organization >>/registries/humanitec/creds > creds.json
 
-        export REGISTRY_PASSWORD=$(cat creds.json | jq -r '.password')
-        export REGISTRY_USERNAME=$(cat creds.json | jq -r '.username')
-        export REGISTRY_REGISTRY=$(cat creds.json | jq -r '.registry')
+        export REGISTRY_PASSWORD=$(cat creds.json | jq '.password')
+        export REGISTRY_USERNAME=$(cat creds.json | jq '.username')
+        export REGISTRY_REGISTRY=$(cat creds.json | jq '.registry')
 
+        echo ${REGISTRY_REGISTRY}
         docker login --username ${REGISTRY_USERNAME} --password ${REGISTRY_PASSWORD} ${REGISTRY_REGISTRY}
