@@ -26,6 +26,6 @@ steps:
         export REGISTRY_USERNAME=$(cat creds.json | jq -r '.username') >> $BASH_ENV
         export REGISTRY_REGISTRY=$(cat creds.json | jq -r '.registry') >> $BASH_ENV
   - run:
-      name: Debug
+      name: Log into Humanitec registry
       command: |
-        echo ${REGISTRY_PASSWORD}
+        docker login --username ${REGISTRY_USERNAME} --password ${REGISTRY_PASSWORD} ${REGISTRY_REGISTRY}
