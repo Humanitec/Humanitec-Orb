@@ -23,7 +23,7 @@ parameters:
     default: https://api.humanitec.io
     description: URL of the API to be used. Defaults to https://api.humanitec.io.
 steps:
-  - build-and-push:
+  - build-push-and-notify:
       organization: << parameters.organization >>
       module_name: << parameters.module_name >>
       dockerfile: << parameters.dockerfile >>

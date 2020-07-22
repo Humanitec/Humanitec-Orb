@@ -28,7 +28,7 @@ steps:
       module_name: << parameters.module_name >>
       dockerfile: << parameters.dockerfile >>
       path: << parameters.path >>
-  - push:
+  - push-and-notify:
       organization: << parameters.organization >>
       module_name: << parameters.module_name >>
       humanitec_api: << parameters.humanitec_api >>
