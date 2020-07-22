@@ -22,9 +22,9 @@ steps:
           -H "Authorization: Bearer ${<< parameters.humanitec_token >>}" \
           -H "accept: application/json" \
           << parameters.humanitec_api >>/orgs/<< parameters.organization >>/registries/humanitec/creds > creds.json
-        echo 'export REGISTRY_PASSWORD=$(cat creds.json | jq -r \'.password\')' >> $BASH_ENV
-        echo 'export REGISTRY_USERNAME=$(cat creds.json | jq -r \'.username\')' >> $BASH_ENV
-        echo 'export REGISTRY_REGISTRY=$(cat creds.json | jq -r \'.registry\')' >> $BASH_ENV
+        echo "export REGISTRY_PASSWORD=$(cat creds.json | jq -r '.password')" >> $BASH_ENV
+        echo "export REGISTRY_USERNAME=$(cat creds.json | jq -r '.username')" >> $BASH_ENV
+        echo "export REGISTRY_REGISTRY=$(cat creds.json | jq -r '.registry')" >> $BASH_ENV
   - run:
       name: Log into Humanitec registry
       command: |
