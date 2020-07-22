@@ -35,7 +35,8 @@ steps:
       name: Log into the Humanitec registry and push the image
       command: |
         LOCAL_TAG=<< parameters.organization >>/<< parameters.module_name >>:$CIRCLE_SHA1
+        REMOTE_TAG=$REGISTRY_REGISTRY/$LOCAL_TAG
 
         docker login --username $REGISTRY_USERNAME --password $REGISTRY_PASSWORD $REGISTRY_REGISTRY
-
-        REMOTE_TAG=$REGISTRY_REGISTRY/$LOCAL_TAG
+        docker tag << parameters.organization >>/$LOCAL_TAG $REMOTE_TAG
+        docker push $REMOTE_TAG
