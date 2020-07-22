@@ -1,0 +1,4 @@
+description: >
+  Push docker image to the Humanitec registry
+steps:
+  - humanitec-login
