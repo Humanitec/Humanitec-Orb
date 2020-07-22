@@ -1,0 +1,7 @@
+description: >
+  Build image and push it to the Humanitec registry
+steps:
+  - checkout
+  - build:
+      organization: "humanitec-demo"
+      module_name: "hugo-app"

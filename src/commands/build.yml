@@ -1,0 +1,32 @@
+description: >
+  Build new image
+parameters:
+  organization:
+    type: string
+    default: ""
+    description: Name of the organization in Humanitec.
+
+  module_name:
+    type: string
+    default: ""
+    description: Name of the module.
+
+  dockerfile:
+    type: string
+    default: Dockerfile
+    description: Name of the dockerfile to be used. Defaults to Dockerfile.
+
+  path:
+    type: string
+    default: .
+    description: Path to the directory containing the dockerfile. Default to . (working directory).
+steps:
+  - run:
+      name: Build docker image
+      command: |
+        local_tag = << parameters.organization >>/<< parameters.module_name >>:$CIRCLE_SHA1
+        echo "Building docker image with local_tag "local_tag
+        docker build \
+          -t local_tag \
+          -f << parameters.path >>/<< parameters.dockerfile >> \
+          << parameters.path >>
