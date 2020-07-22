@@ -15,18 +15,16 @@ parameters:
     description: URL of the API to be used. Defaults to https://api.humanitec.io.
 steps:
   - run:
-      name: Get credentials for the Humanitec registry
+      name: Log into the Humanitec registry and push image
       command: |
         curl -X GET \
           -s \
           -H "Authorization: Bearer ${<< parameters.humanitec_token >>}" \
           -H "accept: application/json" \
           << parameters.humanitec_api >>/orgs/<< parameters.organization >>/registries/humanitec/creds > creds.json
-        echo "export REGISTRY_PASSWORD=$(cat creds.json | jq -r '.password')" >> $BASH_ENV
-        echo "export REGISTRY_USERNAME=$(cat creds.json | jq -r '.username')" >> $BASH_ENV
-        echo "export REGISTRY_REGISTRY=$(cat creds.json | jq -r '.registry')" >> $BASH_ENV
-  - run:
-      name: Log into Humanitec registry
-      command: |
-        echo $REGISTRY_USERNAME
+
+        export REGISTRY_PASSWORD=$(cat creds.json | jq -r '.password')
+        export REGISTRY_USERNAME=$(cat creds.json | jq -r '.username')
+        export REGISTRY_REGISTRY=$(cat creds.json | jq -r '.registry')
+
         docker login --username ${REGISTRY_USERNAME} --password ${REGISTRY_PASSWORD} ${REGISTRY_REGISTRY}
