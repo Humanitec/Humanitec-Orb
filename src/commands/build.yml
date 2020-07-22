@@ -21,7 +21,7 @@ steps:
   - run:
       name: Build docker image
       command: |
-        local_tag = << parameters.organization >>/<< parameters.module_name >>:$CIRCLE_SHA1
+        local_tag=<< parameters.organization >>/<< parameters.module_name >>:$CIRCLE_SHA1
         echo "Building docker image with local_tag "local_tag
         docker build \
           -t local_tag \
