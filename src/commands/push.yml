@@ -23,6 +23,8 @@ steps:
           -H "accept: application/json" \
           << parameters.humanitec_api >>/orgs/<< parameters.organization >>/registries/humanitec/creds > creds.json
 
+        cat creds.json | jq .
+
         REGISTRY_PASSWORD=$(cat creds.json | jq -r '.password')
         REGISTRY_USERNAME=$(cat creds.json | jq -r '.username')
         REGISTRY_REGISTRY=$(cat creds.json | jq -r '.registry')
