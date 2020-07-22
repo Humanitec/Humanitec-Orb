@@ -4,20 +4,20 @@ executor: default
 parameters:
   organization:
     type: string
-    default:
-    description: "Name of the organization in Humanitec"
+    default: ""
+    description: Name of the organization in Humanitec.
   module_name:
     type: string
-    default:
-    description: "Name of the module in Humanitec"
+    default: ""
+    description: Name of the module in Humanitec.
   image_name:
     type: string
-    default:
-    description: "Name of the image"
+    default: ""
+    description: Name of the image.
   humanitec_api:
     type: string
-    default: "https://staging-api.humanitec.io"
-    description: "URL of the API to be used"
+    default: https://api.humanitec.io
+    description: URL of the API to be used. Defaults to https://api.humanitec.io.
 steps:
   - notify:
       organization: << parameters.organization >>
