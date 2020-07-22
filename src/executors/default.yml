@@ -1,12 +1,13 @@
-# How to author Executors: https://circleci.com/docs/2.0/reusing-config/#authoring-reusable-executors
 description: >
-  This is a sample executor using Docker and Node.
-docker:
-  - image: 'circleci/node:<<parameters.tag>>'
+  CircleCI's Ubuntu-based machine executor VM:
+  https://circleci.com/docs/2.0/executor-types/#using-machine
 parameters:
-  tag:
-    default: latest
-    description: >
-      Pick a specific circleci/node image variant:
-      https://hub.docker.com/r/circleci/node/tags
+  image:
     type: string
+    default: ubuntu-1604:201903-01
+  use-docker-layer-caching:
+    type: boolean
+    default: false
+machine:
+  image: << parameters.image >>
+  docker_layer_caching: << parameters.use-docker-layer-caching >>

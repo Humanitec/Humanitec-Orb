@@ -5,17 +5,14 @@ parameters:
     type: string
     default: ""
     description: Name of the organization in Humanitec.
-
   module_name:
     type: string
     default: ""
     description: Name of the module.
-
   dockerfile:
     type: string
     default: Dockerfile
     description: Name of the dockerfile to be used. Defaults to Dockerfile.
-
   path:
     type: string
     default: .

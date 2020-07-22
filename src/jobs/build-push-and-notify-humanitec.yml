@@ -1,4 +1,5 @@
 description: >
   Build new image, push it to the Humanitec registry and notify Humanitec about the new build.
+executor: default
 steps:
   - build-and-push
