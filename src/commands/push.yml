@@ -9,6 +9,10 @@ parameters:
     type: string
     default: ""
     description: Name of the organization in Humanitec.
+  module_name:
+    type: string
+    default: ""
+    description: Name of the module in Humanitec.
   humanitec_api:
     type: string
     default: https://api.humanitec.io
@@ -28,7 +32,11 @@ steps:
         echo "export REGISTRY_REGISTRY=$(cat creds.json | jq -r '.registry')" >> $BASH_ENV
 
   - run:
-      name: Log into the Humanitec registry
+      name: Log into the Humanitec registry and push the image
       command: |
-        echo $REGISTRY_REGISTRY
+        LOCAL_TAG=<< parameters.organization >>/<< parameters.module_name >>:$CIRCLE_SHA1
+
         docker login --username $REGISTRY_USERNAME --password $REGISTRY_PASSWORD $REGISTRY_REGISTRY
+
+        echo << parameters.docker_image >>
+        REMOTE_TAG=$REGISTRY_REGISTRY/$LOCAL_TAG

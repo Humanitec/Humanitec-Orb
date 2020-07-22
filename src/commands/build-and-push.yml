@@ -1,7 +1,29 @@
 description: >
   Build image and push it to the Humanitec registry
+parameters:
+  organization:
+    type: string
+    default: ""
+    description: Name of the organization in Humanitec.
+  module_name:
+    type: string
+    default: ""
+    description: Name of the module in Humanitec.
+  dockerfile:
+    type: string
+    default: Dockerfile
+    description: Name of the dockerfile to be used. Defaults to Dockerfile.
+  path:
+    type: string
+    default: .
+    description: Path to the directory containing the dockerfile. Default to . (working directory).
 steps:
   - checkout
   - build:
-      organization: "humanitec-demo"
-      module_name: "hugo-app"
+      organization: << parameters.organization >>
+      module_name: << parameters.module_name >>
+      dockerfile: << parameters.dockerfile >>
+      path: << parameters.path >>
+  - push:
+      organization: << parameters.organization >>
+      module_name: << parameters.module_name >>

@@ -6,12 +6,26 @@ parameters:
     type: string
     default: ""
     description: Name of the organization in Humanitec.
+  module_name:
+    type: string
+    default: ""
+    description: Name of the module in Humanitec.
+  dockerfile:
+    type: string
+    default: Dockerfile
+    description: Name of the dockerfile to be used. Defaults to Dockerfile.
+  path:
+    type: string
+    default: .
+    description: Path to the directory containing the dockerfile. Default to . (working directory).
   humanitec_api:
     type: string
     default: https://api.humanitec.io
     description: URL of the API to be used. Defaults to https://api.humanitec.io.
 steps:
-  # - build-and-push
-  - push:
+  - build-and-push:
       organization: << parameters.organization >>
+      module-name: << parameters.module_name >>
+      dockerfile: << parameters.dockerfile >>
+      path: << parameters.path >>
       humanitec_api: << parameters.humanitec_api >>

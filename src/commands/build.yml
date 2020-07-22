@@ -8,7 +8,7 @@ parameters:
   module_name:
     type: string
     default: ""
-    description: Name of the module.
+    description: Name of the module in Humanitec.
   dockerfile:
     type: string
     default: Dockerfile
@@ -21,9 +21,9 @@ steps:
   - run:
       name: Build docker image
       command: |
-        local_tag=<< parameters.organization >>/<< parameters.module_name >>:$CIRCLE_SHA1
-        echo "Building docker image with local_tag "local_tag
+        LOCAL_TAG=<< parameters.organization >>/<< parameters.module_name >>:$CIRCLE_SHA1
         docker build \
-          -t local_tag \
+          -t $LOCAL_TAG \
           -f << parameters.path >>/<< parameters.dockerfile >> \
           << parameters.path >>
+        echo docker images -q $LOCAL_TAG
