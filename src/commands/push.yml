@@ -38,5 +38,4 @@ steps:
 
         docker login --username $REGISTRY_USERNAME --password $REGISTRY_PASSWORD $REGISTRY_REGISTRY
 
-        echo << parameters.docker_image >>
         REMOTE_TAG=$REGISTRY_REGISTRY/$LOCAL_TAG
