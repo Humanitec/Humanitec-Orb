@@ -17,6 +17,10 @@ parameters:
     type: string
     default: .
     description: Path to the directory containing the dockerfile. Default to . (working directory).
+  humanitec_api:
+    type: string
+    default: https://api.humanitec.io
+    description: URL of the API to be used. Defaults to https://api.humanitec.io.
 steps:
   - checkout
   - build:
@@ -27,3 +31,4 @@ steps:
   - push:
       organization: << parameters.organization >>
       module_name: << parameters.module_name >>
+      humanitec_api: << paramsters.humanitec_api >>

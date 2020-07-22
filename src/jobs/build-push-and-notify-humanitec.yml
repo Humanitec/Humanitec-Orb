@@ -25,7 +25,7 @@ parameters:
 steps:
   - build-and-push:
       organization: << parameters.organization >>
-      module-name: << parameters.module_name >>
+      module_name: << parameters.module_name >>
       dockerfile: << parameters.dockerfile >>
       path: << parameters.path >>
       humanitec_api: << parameters.humanitec_api >>
