@@ -31,4 +31,4 @@ steps:
   - push:
       organization: << parameters.organization >>
       module_name: << parameters.module_name >>
-      humanitec_api: << paramsters.humanitec_api >>
+      humanitec_api: << parameters.humanitec_api >>
