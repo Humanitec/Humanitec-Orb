@@ -17,6 +17,6 @@ steps:
   - run:
       name: Get credentials for the Humanitec registry
       command: |
-        fetch(`<< parameters.humanitec_api >>/orgs/<< paramsters.organization >>/registries/humanitec/creds`, { \
-          headers: {'Authorization': `Bearer ${<< parameters.humanitec_token}`}, \
+        fetch(`<< parameters.humanitec_api >>/orgs/<< parameters.organization >>/registries/humanitec/creds`, { \
+          headers: {'Authorization': `Bearer ${<< parameters.humanitec_token >>}`}, \
           })
