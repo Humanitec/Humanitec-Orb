@@ -1,6 +1,10 @@
 description: >
   Build image and push it to the Humanitec registry
 parameters:
+  humanitec_token:
+    type: env_var_name
+    default: HUMANITEC_TOKEN
+    description: Token to access Humanitec. Needs to be set in an environment variable in the project.
   organization:
     type: string
     default: ""

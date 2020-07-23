@@ -2,6 +2,10 @@ description: >
   Build new image, push it to the Humanitec registry and notify Humanitec about the new build.
 executor: default
 parameters:
+  humanitec_token:
+    type: env_var_name
+    default: HUMANITEC_TOKEN
+    description: Token to access Humanitec. Needs to be set in an environment variable in the project.
   organization:
     type: string
     default: ""
