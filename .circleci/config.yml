@@ -24,13 +24,13 @@ jobs:
   #
   # Rename this job and add more as needed.
   #
-  integration-test-1:
+  integration-test-build-push-and-notify:
     executor: orb-tools/ubuntu
     steps:
       - checkout
       - humanitec/build-push-and-notify:
           organization: humanitec-demo
-          module_name: circleCI-test
+          module_name: circleci-test
           dockerfile: ~/porject/tests/Dockerfile
           path: ~/project/tests
           humanitec_api: https://staging-api.humanitec.io
@@ -77,7 +77,7 @@ workflows:
       # integration tests of your choosing
 
       # an example job
-      - integration-test-1
+      - integration-test-build-push-and-notify
 
       # publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
@@ -92,7 +92,7 @@ workflows:
           publish-version-tag: false
           add-pr-comment: false
           requires:
-            - integration-test-1
+            - integration-test-build-push-and-notify
           filters:
             branches:
               only: master
