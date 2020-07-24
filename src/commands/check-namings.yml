@@ -15,4 +15,3 @@ steps:
         echo "module_name must be all lowercase letters, numbers and the \"-\" symbol. It cannot start or end with \"-\"." 1>&2
         exit 1
       fi
-      
