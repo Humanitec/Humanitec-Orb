@@ -25,7 +25,7 @@ jobs:
   # Rename this job and add more as needed.
   #
   integration-test-build-push-and-notify:
-    executor: humanitec/executors/default
+    executor: humanitec/default
     steps:
       - checkout
       - humanitec/build-push-and-notify:
