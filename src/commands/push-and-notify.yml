@@ -22,7 +22,7 @@ steps:
       name: Get credentials for the Humanitec registry
       command: |
         curl -X GET \
-          -s \
+          -s -i \
           -H "Authorization: Bearer ${<< parameters.humanitec_token >>}" \
           -H "accept: application/json" \
           << parameters.humanitec_api >>/orgs/<< parameters.organization >>/registries/humanitec/creds > creds.json
