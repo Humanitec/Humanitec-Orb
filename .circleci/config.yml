@@ -28,7 +28,7 @@ jobs:
     executor: orb-tools/ubuntu
     steps:
       - checkout
-      - humanitec/build-push-and-notify-humanitec:
+      - humanitec/build-push-and-notify:
           organization: humanitec-demo
           module_name: circleCI-test
           dockerfile: ~/porject/tests/Dockerfile
