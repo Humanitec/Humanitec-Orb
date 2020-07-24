@@ -1,11 +1,9 @@
 version: 2.1
 
 description: >
-  Sample orb description
-  # What will your orb allow users to accomplish?
-  # Descriptions should be short, simple, and informative.
+  Easily integrate CircleCI with Humanitec to achieve Continuous Delivery.
+  Build and push new images to Humanitec. Notify Humanitec about every new build.
 
-# This information will be displayed in the orb registry and is not mandatory.
 display:
-  home_url: "https://www.website.com/docs"
-  source_url: "https://www.github.com/EXAMPLE_ORG/EXAMPLE_PROJECT"
+  home_url: "https://humanitec.com"
+  source_url: "https://github.com/Humanitec/humanitec-orb"
