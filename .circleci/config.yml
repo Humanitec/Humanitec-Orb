@@ -33,7 +33,7 @@ jobs:
           module_name: circleCI-test
           dockerfile: ~/porject/tests/Dockerfile
           path: ~/project/tests
-          humanitec-api: https://staging-api.humanitec.io
+          humanitec_api: https://staging-api.humanitec.io
 
 workflows:
   # This `lint-pack_validate_publish-dev` workflow will run on any commit.
