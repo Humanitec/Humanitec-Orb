@@ -32,7 +32,7 @@ jobs:
           organization: humanitec-demo
           module_name: circleci-test
           dockerfile: ~/porject/tests/Dockerfile
-          path: ~/project/tests
+          path: ~/project/tests/.
           humanitec_api: https://staging-api.humanitec.io
 
 workflows:
