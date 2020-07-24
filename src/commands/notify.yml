@@ -26,7 +26,6 @@ steps:
       name: Notify Humanitec
       command: |
         curl -X POST \
-          -i \
           -H "Authorization: Bearer ${<< parameters.humanitec_token >>}" \
           -H "Content-type: application/json" \
           -d "{\"commit\": \"$CIRCLE_SHA1\", \"branch\": \"$CIRCLE_BRANCH\", \"image\": \"<< parameters.image_name >>\"}" \
