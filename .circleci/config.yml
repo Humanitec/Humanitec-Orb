@@ -28,7 +28,12 @@ jobs:
     executor: orb-tools/ubuntu
     steps:
       - checkout
-    # - your-orb/your-orb-command
+      - humanitec/build-push-and-notify-humanitec:
+          organization: humanitec-demo
+          module_name: circleCI-test
+          dockerfile: ~/porject/tests/Dockerfile
+          path: ~/project/tests
+          humanitec-api: https://staging-api.humanitec.io
 
 workflows:
   # This `lint-pack_validate_publish-dev` workflow will run on any commit.
