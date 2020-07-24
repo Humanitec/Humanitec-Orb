@@ -27,6 +27,8 @@ parameters:
     description: URL of the API to be used. Defaults to https://api.humanitec.io.
 steps:
   - checkout
+  - check_namings:
+      module_name: << parameters.module_name >>
   - build:
       organization: << parameters.organization >>
       module_name: << parameters.module_name >>

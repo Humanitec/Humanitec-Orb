@@ -18,6 +18,8 @@ parameters:
     default: https://api.humanitec.io
     description: URL of the API to be used. Defaults to https://api.humanitec.io.
 steps:
+  - check_namings:
+      module_name: << parameters.module_name >>
   - run:
       name: Get credentials for the Humanitec registry
       command: |

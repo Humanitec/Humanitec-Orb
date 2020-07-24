@@ -1,0 +1,18 @@
+description: >
+  Check whether selected names are valid in Humanitec
+parameters:
+  module_name:
+    type: string
+    default: ""
+    description: Name of the module in Humanitec.
+steps:
+  -run:
+    name: Check module name
+    command: |
+      if ! echo "<< parameters.module_name >>" | grep -q '^[a-z0-9][a-z0-9-]*[a-z0-9]$'
+      then
+        echo "module_name: \"<< parameters.module_name >>\" is not valid." 1>2
+        echo "module_name must be all lowercase letters, numbers and the \"-\" symbol. It cannot start or end with \"-\"." 1>&2
+        exit 1
+      fi
+      
