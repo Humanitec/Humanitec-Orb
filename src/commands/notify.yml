@@ -1,0 +1,34 @@
+description: >
+  Notify Humanitec about a new available build
+parameters:
+  humanitec_token:
+    type: env_var_name
+    default: HUMANITEC_TOKEN
+    description: Token to access Humanitec. Needs to be set in an environment variable in the project.
+  organization:
+    type: string
+    default: ""
+    description: Name of the organization in Humanitec.
+  module_name:
+    type: string
+    default: $CIRCLE_PROJECT_REPONAME
+    description: Name of the module in Humanitec. The id must be all lowercase letters, numbers and the "-" symbol. It cannot start or end with "-". Defaults to $CIRCLE_PROJECT_REPONAME.
+  image_name:
+    type: string
+    default: ""
+    description: Name of the image.
+  humanitec_api:
+    type: string
+    default: https://api.humanitec.io
+    description: URL of the API to be used. Defaults to https://api.humanitec.io.
+steps:
+  - check_namings:
+      module_name: << parameters.module_name >>
+  - run:
+      name: Notify Humanitec
+      command: |
+        curl -X POST \
+          -H "Authorization: Bearer ${<< parameters.humanitec_token >>}" \
+          -H "Content-type: application/json" \
+          -d "{\"commit\": \"$CIRCLE_SHA1\", \"branch\": \"$CIRCLE_BRANCH\", \"image\": \"<< parameters.image_name >>\"}" \
+          << parameters.humanitec_api >>/orgs/<< parameters.organization >>/modules/<< parameters.module_name >>/builds

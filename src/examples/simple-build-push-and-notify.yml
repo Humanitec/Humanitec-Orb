@@ -1,0 +1,13 @@
+description: >
+  Build an image from your repository and push it to Humanitec.
+usage:
+  version: 2.1
+  orbs:
+    humanitec: humanitec/humanitec@dev:alpha
+  workflows:
+    build-push-and-notify-humanitec:
+      jobs:
+        # Build and push image to Humanitec; inform Humanitec about the new image
+        - humanitec/build-push-and-notify-humanitec:
+            # Name of the organization in Humanitec
+            organization: humanitec-demo

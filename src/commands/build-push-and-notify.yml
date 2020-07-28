@@ -1,0 +1,40 @@
+description: >
+  Build image and push it to the Humanitec registry
+parameters:
+  humanitec_token:
+    type: env_var_name
+    default: HUMANITEC_TOKEN
+    description: Token to access Humanitec. Needs to be set in an environment variable in the project.
+  organization:
+    type: string
+    default: ""
+    description: Name of the organization in Humanitec.
+  module_name:
+    type: string
+    default: $CIRCLE_PROJECT_REPONAME
+    description: Name of the module in Humanitec. The id must be all lowercase letters, numbers and the "-" symbol. It cannot start or end with "-". Defaults to $CIRCLE_PROJECT_REPONAME.
+  dockerfile:
+    type: string
+    default: Dockerfile
+    description: Name of the dockerfile to be used. Defaults to Dockerfile.
+  path:
+    type: string
+    default: .
+    description: Path to the directory containing the dockerfile. Default to . (working directory).
+  humanitec_api:
+    type: string
+    default: https://api.humanitec.io
+    description: URL of the API to be used. Defaults to https://api.humanitec.io.
+steps:
+  - checkout
+  - check_namings:
+      module_name: << parameters.module_name >>
+  - build:
+      organization: << parameters.organization >>
+      module_name: << parameters.module_name >>
+      dockerfile: << parameters.dockerfile >>
+      path: << parameters.path >>
+  - push-and-notify:
+      organization: << parameters.organization >>
+      module_name: << parameters.module_name >>
+      humanitec_api: << parameters.humanitec_api >>
