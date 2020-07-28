@@ -1,8 +1,8 @@
 version: 2.1
 
 description: >
-  Easily integrate CircleCI with Humanitec to achieve Continuous Delivery.
-  Build and push new images to Humanitec. Notify Humanitec about every new build.
+  Build and push new images to Humanitec and improve maintenance of your Kubernetes-ready applications after every CircleCI build. 
+  Experience seamless continuous delivery during your development process.
 
 display:
   home_url: "https://humanitec.com"
