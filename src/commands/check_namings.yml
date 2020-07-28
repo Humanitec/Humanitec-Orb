@@ -3,7 +3,7 @@ description: >
 parameters:
   module_name:
     type: string
-    default: ""
+    default: $CIRCLE_PROJECT_REPONAME.replace(/.*\//, '')
     description: Name of the module in Humanitec. The id must be all lowercase letters, numbers and the "-" symbol. It cannot start or end with "-".
 steps:
   - run:
