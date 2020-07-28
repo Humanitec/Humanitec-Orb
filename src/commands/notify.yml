@@ -11,7 +11,7 @@ parameters:
     description: Name of the organization in Humanitec.
   module_name:
     type: string
-    default: $CIRCLE_PROJECT_REPONAME.replace(/.*\//, '')
+    default: $CIRCLE_PROJECT_REPONAME
     description: Name of the module in Humanitec. The id must be all lowercase letters, numbers and the "-" symbol. It cannot start or end with "-".
   image_name:
     type: string

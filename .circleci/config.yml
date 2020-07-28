@@ -30,6 +30,7 @@ jobs:
       - checkout
       - humanitec/build-push-and-notify:
           organization: humanitec-demo
+          module_name: circleci-test
           path: ~/project/tests/
           humanitec_api: https://staging-api.humanitec.io
 
