@@ -12,7 +12,7 @@ parameters:
   module_name:
     type: string
     default: ""
-    description: Name of the module in Humanitec.
+    description: Name of the module in Humanitec. The id must be all lowercase letters, numbers and the "-" symbol. It cannot start or end with "-".
   humanitec_api:
     type: string
     default: https://api.humanitec.io
