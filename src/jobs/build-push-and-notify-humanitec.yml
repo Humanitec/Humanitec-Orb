@@ -31,6 +31,7 @@ steps:
       name: Clean module_name
       command: |
         echo "export MODULE_NAME=$(<< parameters.module_name >> | sed 's/[^a-zA-Z0-9-]/-/g' | sed 's/^[^a-zA-Z0-9]//' | sed 's/[^a-zA-Z0-9]$//')" >> $BASH_ENV
+        echo $MODULE_NAME
   - build-push-and-notify:
       organization: << parameters.organization >>
       module_name: $MODULE_NAME
