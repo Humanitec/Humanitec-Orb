@@ -11,5 +11,3 @@ usage:
         - humanitec/build-push-and-notify-humanitec:
             # Name of the organization in Humanitec
             organization: humanitec-demo
-            # Name of the module in Humanitec
-            module_name: hugo-app

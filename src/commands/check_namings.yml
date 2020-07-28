@@ -4,7 +4,7 @@ parameters:
   module_name:
     type: string
     default: $CIRCLE_PROJECT_REPONAME
-    description: Name of the module in Humanitec. The id must be all lowercase letters, numbers and the "-" symbol. It cannot start or end with "-".
+    description: Name of the module in Humanitec. The id must be all lowercase letters, numbers and the "-" symbol. It cannot start or end with "-". Defaults to $CIRCLE_PROJECT_REPONAME.
 steps:
   - run:
       name: Check module name
