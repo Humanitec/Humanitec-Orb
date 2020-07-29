@@ -26,6 +26,10 @@ parameters:
     type: string
     default: https://api.humanitec.io
     description: URL of the API to be used. Defaults to https://api.humanitec.io.
+  checkout_submodules:
+    type: boolean
+    default: false
+    description: Option to checkout git submodules. Defaults to false.
 steps:
   - build-push-and-notify:
       organization: << parameters.organization >>
@@ -33,3 +37,4 @@ steps:
       dockerfile: << parameters.dockerfile >>
       path: << parameters.path >>
       humanitec_api: << parameters.humanitec_api >>
+      checkout_submodules: << paraemters.checkout_submodules >>

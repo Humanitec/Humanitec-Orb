@@ -25,8 +25,17 @@ parameters:
     type: string
     default: https://api.humanitec.io
     description: URL of the API to be used. Defaults to https://api.humanitec.io.
+  checkout_submodules:
+    type: boolean
+    default: false
+    description: Option to checkout git submodules. Defaults to false.
 steps:
   - checkout
+  - when:
+      condition: << parameters.checkout_submodules >>
+      steps:
+        - run: git submodule sync
+        - run: git submodule update --init
   - check_namings:
       module_name: << parameters.module_name >>
   - build:
