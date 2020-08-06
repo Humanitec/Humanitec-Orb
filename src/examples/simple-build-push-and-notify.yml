@@ -9,5 +9,5 @@ usage:
       jobs:
         # Build and push image to Humanitec; inform Humanitec about the new image
         - humanitec/build-push-and-notify-humanitec:
-            # Name of the organization in Humanitec
+            # Name of the organization in Humanitec 
             organization: humanitec-organization
