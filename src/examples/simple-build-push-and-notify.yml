@@ -3,11 +3,11 @@ description: >
 usage:
   version: 2.1
   orbs:
-    humanitec: humanitec/humanitec@dev:alpha
+    humanitec: humanitec/humanitec@volatile
   workflows:
     build-push-and-notify-humanitec:
       jobs:
         # Build and push image to Humanitec; inform Humanitec about the new image
         - humanitec/build-push-and-notify-humanitec:
             # Name of the organization in Humanitec
-            organization: humanitec-demo
+            organization: humanitec-organization
