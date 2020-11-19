@@ -8,4 +8,4 @@ Example use-cases are provided on the orb [registry page](https://circleci.com/o
 
 ### How To Contribute
 
-We welcome [issues](https://github.com/Humanitec/Humanitec-Orb/issues) to and [pull requests](https://github.com/Humanitec/Humanitec-Orb/pulls) against this repository!
+We welcome [issues](https://github.com/Humanitec/Humanitec-Orb/issues) to and [pull requests](https://github.com/Humanitec/Humanitec-Orb/pulls) against this repository.
