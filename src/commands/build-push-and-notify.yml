@@ -35,7 +35,7 @@ steps:
       condition: << parameters.checkout_submodules >>
       steps:
         - run: git submodule sync
-        - run: git submodule update --init
+        - run: git submodule update --init --recursive
   - check_namings:
       module_name: << parameters.module_name >>
   - build:
