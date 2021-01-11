@@ -17,6 +17,10 @@ parameters:
     type: string
     default: .
     description: Path to the directory containing the dockerfile. Default to . (working directory).
+  build_arguments:
+    type: string
+    default: ""
+    description: Additional build arguments.
 steps:
   - run:
       name: Build docker image
@@ -25,4 +29,5 @@ steps:
         docker build \
           -t $LOCAL_TAG \
           -f << parameters.path >>/<< parameters.dockerfile >> \
+          << parameters.build_arguments >> \
           << parameters.path >>

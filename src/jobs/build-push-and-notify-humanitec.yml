@@ -30,6 +30,10 @@ parameters:
     type: boolean
     default: false
     description: Option to checkout git submodules. Defaults to false.
+  build_arguments:
+    type: string
+    default: ""
+    description: Additional build arguments.
 steps:
   - build-push-and-notify:
       organization: << parameters.organization >>
@@ -38,3 +42,4 @@ steps:
       path: << parameters.path >>
       humanitec_api: << parameters.humanitec_api >>
       checkout_submodules: << parameters.checkout_submodules >>
+      build_arguments: << parameters.build_arguments >>
