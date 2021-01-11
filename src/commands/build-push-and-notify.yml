@@ -29,6 +29,10 @@ parameters:
     type: boolean
     default: false
     description: Option to checkout git submodules. Defaults to false.
+  build_arguments:
+    type: string
+    default: ""
+    description: Additional build arguments.
 steps:
   - checkout
   - when:
@@ -43,6 +47,7 @@ steps:
       module_name: << parameters.module_name >>
       dockerfile: << parameters.dockerfile >>
       path: << parameters.path >>
+      build_arguments: << parameters.build_arguments >>
   - push-and-notify:
       organization: << parameters.organization >>
       module_name: << parameters.module_name >>
