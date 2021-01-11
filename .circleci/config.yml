@@ -33,6 +33,7 @@ jobs:
           module_name: circleci-test
           path: ~/project/tests/
           humanitec_api: https://staging-api.humanitec.io
+          build_arguments: "--build-arg HTTP_PROXY=http://10.20.30.2:1234"
 
 workflows:
   # This `lint-pack_validate_publish-dev` workflow will run on any commit.
