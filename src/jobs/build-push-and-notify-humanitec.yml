@@ -30,10 +30,10 @@ parameters:
     type: boolean
     default: false
     description: Option to checkout git submodules. Defaults to false.
-  build_arguments:
+  additional_docker_arguments:
     type: string
     default: ""
-    description: Additional build arguments.
+    description: Additional arguments for docker (e.g.,build arguments). Defaults to empty.
 steps:
   - build-push-and-notify:
       organization: << parameters.organization >>
@@ -42,4 +42,4 @@ steps:
       path: << parameters.path >>
       humanitec_api: << parameters.humanitec_api >>
       checkout_submodules: << parameters.checkout_submodules >>
-      build_arguments: << parameters.build_arguments >>
+      additional_docker_arguments: << parameters.additional_docker_arguments >>
