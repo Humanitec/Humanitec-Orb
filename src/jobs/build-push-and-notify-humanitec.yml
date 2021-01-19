@@ -4,7 +4,7 @@ description: >
 executor: << parameters.executor >>
 
 parameters:
-  executor: 
+  executor:
     type: executor
     default: default
     description: >
@@ -15,7 +15,7 @@ parameters:
     default: HUMANITEC_TOKEN
     description: >
       Token to access Humanitec. Needs to be set in an environment variable in the project.
-      
+
   organization:
     type: string
     default: ""
@@ -26,42 +26,42 @@ parameters:
     type: string
     default: $CIRCLE_PROJECT_REPONAME
     description: >
-      Name of the module in Humanitec. The id must be all lowercase letters, numbers and the "-" symbol. It cannot start or end with "-". 
+      Name of the module in Humanitec. The id must be all lowercase letters, numbers and the "-" symbol. It cannot start or end with "-".
       Defaults to $CIRCLE_PROJECT_REPONAME.
 
   dockerfile:
     type: string
     default: Dockerfile
     description: > 
-      Name of the dockerfile to be used. 
+      Name of the dockerfile to be used.
       Defaults to Dockerfile.
 
   path:
     type: string
     default: .
-    description: > 
-      Path to the directory containing the dockerfile. 
+    description: >
+      Path to the directory containing the dockerfile.
       Default to . (working directory).
 
   humanitec_api:
     type: string
     default: https://api.humanitec.io
     description: >
-      URL of the API to be used. 
+      URL of the API to be used.
       Defaults to https://api.humanitec.io.
 
   checkout_submodules:
     type: boolean
     default: false
     description: >
-      Option to checkout git submodules. 
+      Option to checkout git submodules.
       Defaults to false.
 
   additional_docker_arguments:
     type: string
     default: ""
     description: >
-      Additional arguments for docker (e.g.,build arguments). 
+      Additional arguments for docker (e.g.,build arguments).
       Defaults to empty.
       
 steps:
