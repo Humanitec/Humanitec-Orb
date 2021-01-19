@@ -63,7 +63,7 @@ parameters:
     default: ""
     description: >
       Additional arguments for docker (e.g.,build arguments).
-      Defaults to empty.  
+      Defaults to empty.
 steps:
   - build-push-and-notify:
       organization: << parameters.organization >>
