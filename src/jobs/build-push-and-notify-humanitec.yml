@@ -15,7 +15,7 @@ parameters:
     default: HUMANITEC_TOKEN
     description: >
       Token to access Humanitec. Needs to be set in an environment variable in the project.
-
+      
   organization:
     type: string
     default: ""
@@ -63,7 +63,7 @@ parameters:
     description: >
       Additional arguments for docker (e.g.,build arguments). 
       Defaults to empty.
-
+      
 steps:
   - build-push-and-notify:
       organization: << parameters.organization >>
