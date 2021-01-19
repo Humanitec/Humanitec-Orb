@@ -9,6 +9,7 @@ parameters:
     default: default
     description: >
       Executor to use for this job.
+      Defaults to Humanitec/default.
 
   humanitec_token:
     type: env_var_name
@@ -32,7 +33,7 @@ parameters:
   dockerfile:
     type: string
     default: Dockerfile
-    description: > 
+    description: >
       Name of the dockerfile to be used.
       Defaults to Dockerfile.
 
