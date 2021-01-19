@@ -1,39 +1,69 @@
 description: >
   Build new image, push it to the Humanitec registry and notify Humanitec about the new build.
-executor: default
+
+executor: << parameters.executor >>
+
 parameters:
+  executor: 
+    type: executor
+    default: default
+    description: >
+      Executor to use for this job.
+
   humanitec_token:
     type: env_var_name
     default: HUMANITEC_TOKEN
-    description: Token to access Humanitec. Needs to be set in an environment variable in the project.
+    description: >
+      Token to access Humanitec. Needs to be set in an environment variable in the project.
+
   organization:
     type: string
     default: ""
-    description: Name of the organization in Humanitec.
+    description: >
+      Name of the organization in Humanitec.
+
   module_name:
     type: string
     default: $CIRCLE_PROJECT_REPONAME
-    description: Name of the module in Humanitec. The id must be all lowercase letters, numbers and the "-" symbol. It cannot start or end with "-". Defaults to $CIRCLE_PROJECT_REPONAME.
+    description: >
+      Name of the module in Humanitec. The id must be all lowercase letters, numbers and the "-" symbol. It cannot start or end with "-". 
+      Defaults to $CIRCLE_PROJECT_REPONAME.
+
   dockerfile:
     type: string
     default: Dockerfile
-    description: Name of the dockerfile to be used. Defaults to Dockerfile.
+    description: > 
+      Name of the dockerfile to be used. 
+      Defaults to Dockerfile.
+
   path:
     type: string
     default: .
-    description: Path to the directory containing the dockerfile. Default to . (working directory).
+    description: > 
+      Path to the directory containing the dockerfile. 
+      Default to . (working directory).
+
   humanitec_api:
     type: string
     default: https://api.humanitec.io
-    description: URL of the API to be used. Defaults to https://api.humanitec.io.
+    description: >
+      URL of the API to be used. 
+      Defaults to https://api.humanitec.io.
+
   checkout_submodules:
     type: boolean
     default: false
-    description: Option to checkout git submodules. Defaults to false.
+    description: >
+      Option to checkout git submodules. 
+      Defaults to false.
+
   additional_docker_arguments:
     type: string
     default: ""
-    description: Additional arguments for docker (e.g.,build arguments). Defaults to empty.
+    description: >
+      Additional arguments for docker (e.g.,build arguments). 
+      Defaults to empty.
+
 steps:
   - build-push-and-notify:
       organization: << parameters.organization >>
